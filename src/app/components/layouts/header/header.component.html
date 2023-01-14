@@ -1,7 +1,6 @@
     <mat-toolbar-row>
       <ng-container *ngIf="isAdmin=='admin'">
       <a mat-list-item class="nav-link" routerLink="/home"><button mat-button>Inicio</button></a>
-      <a mat-list-item class="nav-link" routerLink="/home/ingresar-votos"><button mat-button>Ingresar votos</button></a>
       <a mat-list-item class="nav-link" routerLink="/reportes"><button mat-button>Reportes</button></a>
       <a mat-list-item class="nav-link" routerLink="/home/panel"><button mat-button>Panel de control</button></a>
     </ng-container>
@@ -12,11 +11,11 @@
       <a mat-list-item class="nav-link" routerLink="/home/panel"><button mat-button>Panel de control</button></a>
     </ng-container>
     <ng-container *ngIf="isAdmin=='fiscal referente'">
-      <a mat-list-item class="nav-link" routerLink="/home/ingresar-votos"><button mat-button>Ingresar votos</button></a>
+
       <a mat-list-item class="nav-link" routerLink="/reportes/por-referente"><button mat-button>Reportes</button></a>
     </ng-container>
     <ng-container *ngIf="isAdmin=='fiscal'">
-      <a mat-list-item class="nav-link" routerLink="/home/ingresar-votos"><button mat-button>Ingresar votos</button></a>
+
     </ng-container>
     <span class="example-spacer"></span>
     <span class="user" style="text-transform: uppercase;" *ngIf="nombre_completo">{{nombre_completo}} | {{role}}</span>

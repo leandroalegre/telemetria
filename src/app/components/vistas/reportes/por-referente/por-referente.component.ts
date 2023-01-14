@@ -1,5 +1,5 @@
 import { LocalService } from './../../../../services/local.service';
-import { PersonasService } from 'src/app/services/personas.service';
+import { PlantaService } from 'src/app/services/planta.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -13,32 +13,20 @@ import { MatTableDataSource } from '@angular/material/table';
 
 export class PorReferenteComponent implements OnInit {
 
-  displayedColumns: string[] = ['dni', 'nombre_completo', 'acciones'];
+  displayedColumns: string[] = ['Ingreso', 'Egreso1', 'Egreso2', 'Turbidez' , 'PH' , 'Clorimetro', 'Cisterna', 'Presion', 'Bomba', 'fecReal','TIME'];
   dataSource = new MatTableDataSource()
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-seccionpersonas=false;
-personas:any[]=[]
-nombre_completo;
-totalpersonas;
-votaron=0;
-novotaron=0;
-tabla:boolean=true;
-  constructor(private perSvc:PersonasService, private localService:LocalService) { }
-user=this.localService.getJsonValue('user')
+
+
+  constructor(private plaSvc:PlantaService, private localService:LocalService) { }
+  planta=this.localService.getJsonValue('planta')
+
   ngOnInit(): void {
-    if(this.user.role=='referente' || this.user.role=='fiscal referente'){
-      this.perSvc.getReferenteUser(this.user.id_persona).subscribe(res=>{
-        this.tabla=false
-        this.getPersonasByReferente(res[0].id_persona, res[0].nombre_completo)
-      })
-    }else{
-      this.tabla=true
-      this.perSvc.getReferentes().subscribe(res=>{
+    this.plaSvc.getLecturas().subscribe(res=>{
       this.dataSource.data=res
     })
-    }
   }
 
   ngAfterViewInit() {
@@ -56,18 +44,7 @@ user=this.localService.getJsonValue('user')
     }
   }
 
-  getPersonasByReferente(id_persona, nombre_completo){
-    this.nombre_completo=nombre_completo
-    this.perSvc.getPersonasbyReferente(id_persona).subscribe(res=>{
-      this.totalpersonas=res.length
-      this.personas=res;
-      this.seccionpersonas=true
-      this.perSvc.getVotosByReferentes(id_persona).subscribe(per=>{
-        this.votaron=per[0].votaron
-        this.novotaron=per[0].novotaron
-      })
-    })
-  }
+
 
 
 }
