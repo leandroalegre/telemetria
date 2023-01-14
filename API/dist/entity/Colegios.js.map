@@ -1,0 +1,1 @@
+{"version":3,"file":"Colegios.js","sourceRoot":"","sources":["../../src/entity/Colegios.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,mCAAyE;AAIzE;IADA,sBAAsB;IACtB;IAQA,CAAC;IALC;QADC,gCAAsB,EAAE;;gDACN;IAGnB;QADC,gBAAM,CAAC,SAAS,EAAC,EAAE,MAAM,EAAC,GAAG,EAAC,CAAC;;oDACT;IANZ,QAAQ;QAFpB,gBAAM,EAAE;QACT,sBAAsB;OACT,QAAQ,CAQpB;IAAD,eAAC;CAAA,AARD,IAQC;AARY,4BAAQ"}

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<mat-sidenav-container *ngIf="showLogin">
+  <router-outlet name='outlet1'></router-outlet>
+</mat-sidenav-container>
+
+<mat-sidenav-container *ngIf="showNewPass">
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
+
+
+<div class="example-container" *ngIf="showHead">
+  <mat-toolbar  class="example-toolbar">
+<app-header></app-header>
+  </mat-toolbar>
+<router-outlet></router-outlet>
+</div>
+
+
+
+

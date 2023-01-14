@@ -1,0 +1,52 @@
+<mat-card class="mat-elevation-z8">
+    <mat-card-header>
+        <mat-card-title>Ingresar votos por persona</mat-card-title>
+        <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+
+      <form [formGroup]="ingresarVoto">
+        <div style=" margin-bottom: 5%;">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Ingrese DNI</mat-label>
+            <input matInput formControlName="dni" placeholder="DNI">
+            <mat-error  *ngIf="checkField('dni')">
+              {{errorMessage}}
+            </mat-error>
+          </mat-form-field>
+          <button mat-button color="primary" (click)="onSave()">Buscar</button>
+        </p>
+      </div>
+    </form>
+
+    <div *ngIf="datospersona">
+      <mat-list>
+
+        <mat-list-item>
+          <div class="container" align="center">
+            <div class="row">
+                <div class="col-md-12 separar"><b>DNI:</b> {{dni}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 separar"><b>Nombre completo:</b> {{nombre_completo}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-12" *ngIf="estadoVoto==1" style="margin-bottom: 5%;">
+                <b>¿Votó? </b> <span style="color:green">Votó</span><br>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-md-12" *ngIf="estadoVoto==0" style="margin-bottom: 5%;">
+                  <b>¿Votó? </b> <span style="color:blue">No votó</span><br>
+                  </div>
+                </div>
+            </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    </mat-card-content>
+    <div align="center" *ngIf="estadoVoto==0" >
+      <button class="btn btn-success" mat-button [disabled]="!ingresarVoto.valid" (click)="confirmaVoto(id_persona)">Confirmar voto</button>
+    </div>
+</mat-card>

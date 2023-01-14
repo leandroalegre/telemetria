@@ -1,0 +1,198 @@
+<br>
+<div class="container">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar><i class="material-icons">settings</i></div>
+      <mat-card-title>Panel de control</mat-card-title>
+      <mat-card-subtitle>Configuracion de la aplicación.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <div *ngIf="userrol == 'operador'; else nooperador"></div>
+          <ng-template #nooperador>
+            <mat-card class="example-card mat-elevation-z8">
+              <mat-card-header>
+                <mat-card-title>
+                  <i class="material-icons" style="vertical-align: sub;">person_pin</i> Asignar nuevo referente
+                </mat-card-title>
+              </mat-card-header>
+              <mat-divider></mat-divider>
+              <br>
+              <mat-card-content>
+                <h5><b>Personas</b></h5>
+                <div class="ng-autocomplete" style="width: auto;">
+                  <ng-autocomplete
+                    [data]="Votantes"
+                    [searchKeyword]="keyword"
+                    (selected)='selectEvent($event)'
+                    (inputChanged)='onChangeSearch($event)'
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate"
+                    [minQueryLength]="3"
+                    [debounceTime]="3"
+                    >
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.nombre_completo"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                  </div>
+                  <br>
+                  <p style="color: rgb(141, 141, 247);"><i>Para quitar el rol de una persona, seleccionar la persona y el sistema le quitará el rol.</i></p>
+              </mat-card-content>
+            </mat-card>
+            <br>
+            <mat-card class="example-card mat-elevation-z8">
+              <mat-card-header>
+                <mat-card-title>
+                  <i class="material-icons" style="vertical-align: sub;">person_pin</i> Asignar nuevo fiscal
+                </mat-card-title>
+              </mat-card-header>
+              <mat-divider></mat-divider>
+              <br>
+              <mat-card-content>
+                <h5><b>Personas</b></h5>
+                <div class="ng-autocomplete" style="width: auto;">
+                  <ng-autocomplete
+                    [data]="Votantes"
+                    [(ngModel)]="fiscal"
+                    [searchKeyword]="keyword"
+
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate"
+                    [minQueryLength]="3"
+                    [debounceTime]="3"
+                    >
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.nombre_completo"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                  </div>
+                  <br>
+                  <mat-checkbox [(ngModel)]="flagfiscal" class="example-margin">¿Es referente?</mat-checkbox>
+                  <button mat-raised-button class="mat-elevation-z8" style="width: 100%" color="primary" (click)="guardarfiscal()">Guardar</button>
+                  <!-- <p style="color: rgb(141, 141, 247);"><i>Para quitar una persona como 'Referente' seleccionar la persona y el sistema le quitará el rol.</i></p> -->
+              </mat-card-content>
+            </mat-card>
+            <br>
+          </ng-template>
+          <mat-card class="example-card mat-elevation-z8">
+            <mat-card-header>
+              <mat-card-title>
+                <i class="material-icons" style="vertical-align: sub;">person_pin</i> Asignar oposicion
+              </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <br>
+            <mat-card-content>
+              <h5><b>Personas</b></h5>
+              <div class="ng-autocomplete" style="width: auto;">
+                <ng-autocomplete
+                  [data]="Votantes"
+                  [(ngModel)]="opositor"
+                  [searchKeyword]="keyword"
+
+                  [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate"
+                  [minQueryLength]="3"
+                  [debounceTime]="3"
+                  >
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.nombre_completo"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+                </div>
+                <br>
+                <button mat-raised-button class="mat-elevation-z8" style="width: 100%" color="primary" (click)="guardaropositor()">Guardar</button>
+                <br><br>
+                <p style="color: rgb(141, 141, 247);"><i>Para quitar una persona como 'Oposición' seleccionar la persona y al guardar el sistema le consultará si quiere quitar a la persona como oposición.</i></p>
+            </mat-card-content>
+          </mat-card>
+          <br>
+        </div>
+        <div class="col-md-6">
+          <mat-card class="example-card mat-elevation-z8">
+            <mat-card-header>
+              <mat-card-title>
+                <i class="material-icons" style="vertical-align: sub;">supervised_user_circle</i> Referenciar persona
+              </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <br>
+            <mat-card-content>
+              <h5><b>Referentes</b></h5>
+              <div class="ng-autocomplete" style="width: auto;">
+                <ng-autocomplete
+                  [data]="Referentes"
+                  [(ngModel)]="Rreferente[0]"
+                  [searchKeyword]="keyword"
+
+
+                  [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate"
+                  [minQueryLength]="3"
+                  [debounceTime]="3"
+                  >
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.nombre_completo"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+              <br>
+              <h5><b>Votantes</b></h5>
+              <div class="ng-autocomplete" style="width: auto;">
+                <ng-autocomplete
+                  [data]="Votantes"
+                  [(ngModel)]="Rreferente[1]"
+                  [searchKeyword]="keyword"
+
+
+                  [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate"
+                  [minQueryLength]="3"
+                  [debounceTime]="3"
+                  >
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.nombre_completo"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+              <br>
+              <button mat-raised-button class="mat-elevation-z8" style="width: 100%" color="primary" (click)="guardarreferenciado()">Guardar</button>
+              <br><br>
+              <div class="row">
+                <p style="color: rgb(141, 141, 247);"><i>Para dejar sin referente inmediato a un votante, dejar en blanco el campo de 'Referente'.</i></p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <br>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

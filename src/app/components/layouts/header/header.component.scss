@@ -1,0 +1,41 @@
+a{
+  color: #fff;
+  text-decoration: none;
+  margin-left: -5%;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+span{
+  font-size: 16px;
+}
+
+  @media(max-width:600px){
+   .user{
+     display: none;
+   }
+  }
+
+  mat-toolbar{
+    background-color: #FF9800;
+    span{
+      color:#ffffff;
+    }
+  }
+
+  .example-spacer {
+    flex: 2 2 auto;
+  }
+
+
+
+
+
+
+
+
+
+

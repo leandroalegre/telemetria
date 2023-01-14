@@ -1,0 +1,91 @@
+<!-- <br>
+<div class="container">
+  <p>Habilitado unicamente el panel de control y el menú de reportes</p>
+</div>
+ -->
+ <mat-card class="mat-elevation-z8" style="width: 50%; margin:auto auto;margin-top: 2%;">
+     <mat-card-header>
+         <mat-card-title>Votaciones en tiempo real</mat-card-title>
+         <mat-card-subtitle>Los datos se actualizarán automáticamente</mat-card-subtitle>
+     </mat-card-header>
+     <mat-card-content>
+
+
+      <mat-list>
+        <mat-list-item style="text-align: center;">
+          <div class="col-4"><b>Total de personas</b></div>
+          <div class="col-4"><b>Confirmados</b></div>
+          <div class="col-4"><b>En espera</b></div>
+        </mat-list-item>
+              <mat-list-item style="text-align: center;">
+                <div class="col-4">{{totalvotos}}</div>
+                <div class="col-4">{{votaron}} ({{porcentajevoto}}%)</div>
+                <div class="col-4">{{novotaron}} ({{porcentajenovoto}}%)</div>
+              </mat-list-item>
+      </mat-list>
+
+<hr>
+
+<mat-list>
+  <mat-list-item style="text-align: center;">
+    <div class="col-4"><b>Total oposicion</b></div>
+    <div class="col-4"><b>Confirmados</b></div>
+    <div class="col-4"><b>En espera</b></div>
+  </mat-list-item>
+        <mat-list-item style="text-align: center;">
+          <div class="col-4">{{totalvotosOp}}</div>
+          <div class="col-4">{{votaronOp}} ({{porcentajevotoOp}}%)</div>
+          <div class="col-4">{{novotaronOp}} ({{porcentajenovotoOp}}%)</div>
+        </mat-list-item>
+</mat-list>
+
+<hr>
+
+<mat-list>
+  <mat-list-item style="text-align: center;">
+    <div class="col-4"><b>Total referenciados</b></div>
+    <div class="col-4"><b>Confirmados</b></div>
+    <div class="col-4"><b>En espera</b></div>
+  </mat-list-item>
+        <mat-list-item style="text-align: center;">
+          <div class="col-4">{{totalvotosRef}}</div>
+          <div class="col-4">{{votaronRef}} ({{porcentajevotoRef}}%)</div>
+          <div class="col-4">{{novotaronRef}} ({{porcentajenovotoRef}}%)</div>
+        </mat-list-item>
+</mat-list>
+
+<hr>
+
+<mat-card-header>
+  <mat-card-title style="margin-top:5%;">Votos por referente</mat-card-title>
+</mat-card-header>
+
+
+<mat-list>
+  <mat-list-item style="text-align: center;">
+    <div class="col-5"><b>Referente</b></div>
+    <div class="col-3"><b>Confirmados</b></div>
+    <div class="col-4"><b>En espera</b></div>
+  </mat-list-item>
+  <div *ngFor="let referente of referentes">
+    <div *ngFor="let r of referente">
+        <mat-list-item style="text-align: center;">
+          <div class="col-5">{{r.nombre_completo}}</div>
+          <div class="col-3">{{r.votaron}}</div>
+          <div class="col-4">{{r.novotaron}}</div>
+        </mat-list-item>
+      </div>
+    </div>
+</mat-list>
+
+
+
+
+
+
+
+
+     </mat-card-content>
+
+ </mat-card>
+
